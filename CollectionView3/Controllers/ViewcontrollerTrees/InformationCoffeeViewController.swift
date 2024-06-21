@@ -103,13 +103,52 @@ class InformationCoffeeViewController: UIViewController {
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         return button
     }()
+    
+    private let sizeLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.textAlignment = .left
+        label.font = .systemFont(ofSize: 22, weight: .semibold)
+        label.text = "Size"
+        return label
+    }()
+    
+    private let buttonS: UIButton = {
+        var button = UIButton()
+        button.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.00)
+        button.setTitleColor(.black, for: .normal)
+        button.setTitle("S", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
+        button.layer.cornerRadius = 10
+        return button
+    }()
+    
+    private let buttonM: UIButton = {
+        var button = UIButton()
+        button.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.00)
+        button.setTitleColor(.black, for: .normal)
+        button.setTitle("M", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
+        button.layer.cornerRadius = 10
+        return button
+    }()
+    
+    private let buttonL: UIButton = {
+        var button = UIButton()
+        button.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.00)
+        button.setTitleColor(.black, for: .normal)
+        button.setTitle("L", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
+        button.layer.cornerRadius = 10
+        return button
+    }()
  
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = "Detail"
         view.backgroundColor = .white
-        [imageView,label,label2,delivery,bean,extra,descriptionOfLabel,descriptionCoffee,showText].forEach {view.addSubview($0)}
+        [imageView,label,label2,delivery,bean,extra,descriptionOfLabel,descriptionCoffee,showText,sizeLabel,buttonS,buttonM,buttonL].forEach {view.addSubview($0)}
         
         imageView.image = UIImage(named: coffeeImage!)
         label.text = coffeeName!
@@ -133,6 +172,14 @@ class InformationCoffeeViewController: UIViewController {
         descriptionCoffee.anchor(top: descriptionOfLabel.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, padding: .init(top: 10, left: 20, bottom: 0, right: 20))
 
         showText.anchor(top: descriptionCoffee.bottomAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, padding: .init(top: 5, left: 0, bottom: 0, right: 20), size: .init(width: 100, height: 30))
+        
+        sizeLabel.anchor(top: showText.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, padding: .init(top: 20, left: 20, bottom: 0, right: 20), size: .init(width: 0, height: 30))
+        
+        buttonS.anchor(top: sizeLabel.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, padding: .init(top: 20, left: 20, bottom: 0, right: 0),size: .init(width: 100, height: 40))
+        
+        buttonM.anchor(top: sizeLabel.bottomAnchor, bottom: nil, leading: buttonS.trailingAnchor, trailing: nil, padding: .init(top: 20, left: 20, bottom: 0, right: 0),size: .init(width: 100, height: 40))
+        
+        buttonL.anchor(top: sizeLabel.bottomAnchor, bottom: nil, leading: buttonM.trailingAnchor, trailing: view.trailingAnchor, padding: .init(top: 20, left: 20, bottom: 0, right: 20),size: .init(width: 100, height: 40))
 
         showText.addTarget(self, action: #selector(readMoreTapped), for: .touchUpInside)
         
