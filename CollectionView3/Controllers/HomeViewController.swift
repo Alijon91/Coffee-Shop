@@ -306,6 +306,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             vc.coffeeImage = imageCoffee
             vc.coffeeName  = coffeeNames
             vc.coffeeBrandName = coffeeBrandNames
+            vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
